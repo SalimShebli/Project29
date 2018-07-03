@@ -197,6 +197,7 @@
     <Compile Include="Controllers\api\NotifactionController.cs" />
     <Compile Include="Controllers\api\PacientController.cs" />
     <Compile Include="Controllers\api\PersonController.cs" />
+    <Compile Include="Controllers\api\SearchController.cs" />
     <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\surveyController.cs" />
@@ -317,6 +318,7 @@
     <Content Include="Views\Times\_Create.cshtml" />
     <Content Include="Views\Appointment\_tableAppiont.cshtml" />
     <Content Include="Views\Home\Don.cshtml" />
+    <Content Include="Views\Search\GetDoctorOrStudentByName.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
