@@ -1,0 +1,128 @@
+﻿@model Poject2.ViewModel.tableappointViewModel
+@{
+    ViewBag.Title = "_tableAppiont";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="margin-bottom:20px">
+    <h2 class="text-center">الموعيد</h2>
+    
+    <button class="btn btn-danger" style="float: right;"  onclick="location.href='@Url.Action("NextTable", "Appointment", new { id = Model.numberoftable ,docid=Model.appoint.Docid, type=Model.appoint.type})'">
+        الاسبوع التالي
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </button>
+    <button class="btn btn-success" onclick="location.href='@Url.Action("PervTable", "Appointment", new { id = Model.numberoftable ,docid=Model.appoint.Docid, type=Model.appoint.type} )'">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        الاسبوع السابق
+    </button>
+</div>
+<div class="container">
+
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr class="text-center">
+                @for (var i = 0; i < 7; i++)
+                {
+                    if (Model.today.AddDays(i).DayOfWeek != DayOfWeek.Friday &&
+                        Model.today.AddDays(i).DayOfWeek != Model.day)
+                    {
+                        <td>
+                            @Model.today.AddDays(i).ToShortDateString()
+                            @Model.today.AddDays(i).DayOfWeek.ToString()
+                        </td>
+                    }
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (var j = 0; j < Model.timview.tim.Count; j++)
+            {
+
+                if (Convert.ToInt32(Model.timview.tim[j].Replace(":", "")) < Convert.ToInt32(Model.time.breakBegin.Replace(":", "")) ||
+                    Convert.ToInt32(Model.timview.tim[j].Replace(":", "")) >= Convert.ToInt32(Model.time.breakEnd.Replace(":", "")))
+                {
+                    <tr class="text-center">
+                        @for (var i = 0; i < 7; i++)
+                    {
+                        if (Model.today.AddDays(i).DayOfWeek != DayOfWeek.Friday &&
+                            Model.today.AddDays(i).DayOfWeek != Model.day)
+                        {
+                            if (Convert.ToInt32(Model.timview.tim[j].Replace(":", "")) >= Convert.ToInt32(Model.time.TimeBegin.Replace(":", "")) &&
+                            Convert.ToInt32(Model.timview.tim[j].Replace(":", "")) <= Convert.ToInt32(Model.time.Timeend.Replace(":", "")))
+                            {
+                                var v = Model.usedAppoint.SingleOrDefault
+                                    (m => m.Date.Day == Model.today.AddDays(i).Day &&
+                                    (Convert.ToInt32(m.Date.ToString("hh:mm").Replace(":", "")) ==
+                                     Convert.ToInt32(Model.timview.tim[j].Replace(":", ""))));
+                                if (v == null)
+                                {
+                                    if (Session["type"].Equals("3"))
+                                    {
+                                            <td>
+                                                @Html.ActionLink(
+                                              linkText: @Model.timview.tim[j],
+                                              actionName: "FormAppointment",
+                                              controllerName: "Appointment",
+                                              routeValues: new
+                                              {
+                                                  dt = @Model.today.AddDays(i).ToString("dd/MM/yyyy") + "-" +
+                                                  @Model.timview.tim[j],
+                                                  docid = @Model.appoint.Docid,
+                                                  type = @Model.appoint.type,
+                                              },
+                                              htmlAttributes: null)
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>@Model.timview.tim[j]</td>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (Session["type"].Equals("3"))
+                                        {
+                                            if (v.sure)
+                                            {
+                                                <td class="success">takeing</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="warning">takeing</td>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (v.sure)
+                                            {
+                                                <td class="success">
+                                                    @Html.ActionLink(
+                                                  linkText: @Model.usedAppoint[i].pacient.person.fName +
+                                                  @Model.usedAppoint[i].pacient.person.lName,
+                                                  actionName: "FormAppointment",
+                                                  controllerName: "Appointment",
+                                                  routeValues: new
+                                                  {
+                                                      dt = @Model.today.AddDays(i).ToString("dd/MM/yyyy") + "-" + @Model.timview.tim[j],
+                                                      docid = @Model.appoint.Id,
+                                                      type = Model.appoint.type
+                                                  },
+                                                  htmlAttributes: null)
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td class="warning">You Revice Request</td>
+                                            }
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+
+    </table>
+</div>

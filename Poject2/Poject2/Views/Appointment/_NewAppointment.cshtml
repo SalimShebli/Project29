@@ -1,0 +1,123 @@
+﻿@model Poject2.ViewModel.formAppoimtnetViewModel
+@{
+    ViewBag.Title = "NewAppointment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("saveAppointment", "Appointment"))
+{
+    @Html.HiddenFor(m => m.appoint.Date);
+    @Html.HiddenFor(m => m.appoint.Docid);
+    @Html.HiddenFor(m => m.appoint.type);
+    <div style="margin-top:30px">
+        <div class="panel-group " id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <button class="btn btn-link" data-toggle="collapse" data-parent="#accordion" href="#collapse1" onclick="Mychoice()">
+                        <h4 class="panel-title">I now My State </h4>
+                    </button>
+                </div>
+
+                <div id="collapse1" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                        commodo consequat.
+                        <div class="form-group ">
+                            @Html.LabelFor(m => m.appoint.States)
+                            @Html.DropDownListFor(m => m.appoint.StatesId, new SelectList(@Model.allstate, "Id","Content"), "State Selected", new { @class = "from-control", @id = "ch" })
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <button class="btn btn-link" data-toggle="collapse" data-parent="#accordion" href="#collapse2" onclick="Mychoice2()">
+                        <h4 class="panel-title"> I don't now My StateI now My State </h4>
+                    </button>
+
+                </div>
+                <div id="collapse2" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                        commodo consequat.
+                    </div>
+                    <div class="container">
+                        <table class="table table-striped table-bordered">
+                            <thead class="text-center">
+                                <tr>
+                                    <th class="text-center">question</th>
+                                    <th class="text-center">Answer</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (var i = 0; i < Model.survey.Mysurvey.Count; i++)
+                                {
+                                    <tr class="text-center">
+                                        <td>@Html.Label(Model.survey.Mysurvey[i].question)</td>
+                                        <td>@Html.CheckBoxFor(m => m.survey.Mysurvey[i].Answer ,new { @id = "chtab" + i })</td>
+
+                                        @Html.HiddenFor(m => m.survey.Mysurvey[i].Id)
+                                    </tr>
+
+                                    @*<input type="checkbox" name="Model.Answer[0]" value="false">*@
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <button class="btn btn-link" data-toggle="collapse" data-parent="#accordion" href="#collapse3" onclick="Mychoice3()">
+                        <h4 class="panel-title"> Check out </h4>
+                    </button>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                        commodo consequat.
+                    </div>
+                    <div class="container">
+                        <div class="form-group">
+                            @Html.CheckBoxFor(m => m.checkout,new { @id="chbox"})
+                            <span>Check Out</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-top:30px">Save</button>
+    </div>
+    
+}
+<script type="text/javascript">
+    function Mychoice() {
+        var i = 0;
+        //alert('btn1');
+        $('input[id=chbox]').attr('checked', false);
+        for (var i = 0; i < @Model.survey.Mysurvey.Count;i++){
+            $('input[id=chtab'+i+']').attr('checked', false);
+        }
+    }
+    function Mychoice3() {
+        //alert('btn3');
+        for (var i = 0; i < @Model.survey.Mysurvey.Count;i++){
+            $('input[id=chtab'+i+']').attr('checked', false);
+        }
+        $('#ch').val(null);
+
+    }
+    function Mychoice2() {
+        //alert('btn2');    
+        $('input[id=chbox]').attr('checked', false);
+        $('#ch').val(null);
+    }
+</script>

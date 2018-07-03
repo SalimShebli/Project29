@@ -1,0 +1,39 @@
+﻿@model Poject2.Models.surveylist
+@{
+    ViewBag.Title = "survey";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center">survey</h2>
+
+@using (Html.BeginForm("save", "survey"))
+{
+    <div class=".table-responsiv" style="padding : 10px 40px 10px 40px">
+
+    <table class="table table-striped table-bordered">
+        <thead>
+
+            <tr class="text-center">
+                <th class="text-center">question</th>
+                <th class="text-center">Answer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.Mysurvey.Count; i++)
+            {
+                <tr class="text-center">
+                    <td> @Html.Label(Model.Mysurvey[i].question)</td>
+                    <td>@Html.CheckBoxFor(m => m.Mysurvey[i].Answer)</td>
+
+                    @Html.HiddenFor(m => m.Mysurvey[i].Id)
+                </tr>
+
+                @*<input type="checkbox" name="Model.Answer[0]" value="false">*@
+            }
+        </tbody>
+    </table>
+    @Html.HiddenFor(Model => Model.Doctorid)
+    @Html.HiddenFor(Model => Model.Id)
+    <button type="submit" class="btn btn-primary" >send </button>
+    </div>
+}

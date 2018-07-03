@@ -1,0 +1,51 @@
+﻿@model Poject2.ViewModel.AppointmentViewModel
+@{
+    ViewBag.Title = "_Appoint";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>  الموعد </h2>
+@using (Html.BeginForm("Survey", "Appintment"))
+{
+    if (Model.liststud != null)
+    {
+        for (int i = 0; i < Model.liststud.Count; i++)
+        {
+            @Html.ActionLink(
+             linkText: Model.liststud[i].person.fName + Model.liststud[i].person.lName,
+             actionName: "tableAppiont",
+             controllerName: "Appointment",
+             routeValues: new { id = 0, docid = Model.liststud[i].id, type = Model.liststud[i].personId },
+             htmlAttributes: null);
+                }
+            }
+            else if(Model.listdoc !=null)
+            {
+                for (int i = 0; i < Model.listdoc.Count; i++)
+                {
+                    @Html.ActionLink(
+                   linkText: Model.listdoc[i].person.fName + Model.listdoc[i].person.lName,
+                   actionName: "tableAppiont",
+                   controllerName: "Appointment",
+                   routeValues: new { id = 0, docid = Model.listdoc[i].Id, type = Model.listdoc[i].personId },
+                   htmlAttributes: null);
+                }
+            }
+   
+}
+    
+    @*@<div class="form-group">
+        @Html.LabelFor(m => m.Cutomer.BirthDay)
+        @Html.TextBoxFor(m => m.Cutomer.BirthDay, "{0:d MMM yyyy}", new { @class = "from-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Cutomer.MemberShipTypeId)
+        @Html.DropDownListFor(m => m.Cutomer.MemberShipTypeId, new SelectList(Model.MemShip, "Id", "Name"), "MemberShipType Selected", new { @class = "from-control" })
+    </div>
+    <div class="form-check">
+        @Html.CheckBoxFor(m => m.Cutomer.IsSubscribedToNewsletter)
+        <label>IsSubscribedToNewsletter</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>*@
