@@ -1,0 +1,36 @@
+﻿@model Poject2.ViewModel.TimeViewModel
+@{
+    ViewBag.Title = "_Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>_Create</h2>
+@using (Html.BeginForm("save", "Times"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.time.TimeBegin)
+        @Html.DropDownListFor(m => m.time.TimeBegin, new SelectList(Model.tim), "time Begin Selected", new { @class = "from-control" })
+
+    @*</div>    <div class="form-group">*@
+        @Html.LabelFor(m => m.time.Timeend)
+        @Html.DropDownListFor(m => m.time.Timeend, new SelectList(Model.tim), "time end Selected", new { @class = "from-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.time.breakBegin)
+        @Html.DropDownListFor(m => m.time.breakBegin, new SelectList(Model.tim), "break Begin Selected", new { @class = "from-control" })
+    @*</div>   <div class="form-group">*@
+        @Html.LabelFor(m => m.time.breakEnd)
+        @Html.DropDownListFor(m => m.time.breakEnd, new SelectList(Model.tim), "break Begin Selected", new { @class = "from-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.time.Dayoff)
+        @Html.DropDownListFor(m => m.time.Dayoff, new SelectList(Model.day), "day off Selected", new { @class = "from-control" })
+    </div>
+    @*<div class="form-check">
+            @Html.CheckBoxFor(m => m.Cutomer.IsSubscribedToNewsletter)
+            <label>IsSubscribedToNewsletter</label>
+        </div>*@
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}
