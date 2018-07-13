@@ -53,6 +53,7 @@ namespace Poject2.Controllers
                     app.liststud[i].person = persons.FirstOrDefault(m => m.Id == app.liststud[i].personId);
                 }
             }
+           
             return View("_Appoint", app);
         }
         public ActionResult takeAppoint()

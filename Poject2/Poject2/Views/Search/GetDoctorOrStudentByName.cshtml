@@ -1,8 +1,20 @@
-﻿
+﻿@using Poject2.Models.Persons;
 @{
     ViewBag.Title = "GetDoctorOrStudentByName";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>GetDoctorOrStudentByName</h2>
-
+<h2>@ViewBag.Doctors.Count</h2>
+<h2>doctors</h2>
+@for(int i=0;i<ViewBag.Doctors.Count;i++)
+{
+    Doctor x = ViewBag.Doctors[i];
+    <h2>@x.Id</h2>
+}
+<h2>students</h2>
+@for (int i = 0; i < ViewBag.Students.Count; i++)
+{
+    Student x = ViewBag.Students[i];
+    <h2>@x.id</h2>
+}

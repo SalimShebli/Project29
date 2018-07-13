@@ -194,9 +194,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\AppiontmentController.cs" />
     <Compile Include="Controllers\api\DoctorController.cs" />
-    <Compile Include="Controllers\api\NotifactionController.cs" />
+    <Compile Include="Controllers\api\NotificationController.cs" />
     <Compile Include="Controllers\api\PacientController.cs" />
     <Compile Include="Controllers\api\PersonController.cs" />
+    <Compile Include="Controllers\api\RatingController.cs" />
     <Compile Include="Controllers\api\SearchController.cs" />
     <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -232,6 +233,18 @@
     <Compile Include="Migrations\201807010921350_addpacinet.cs" />
     <Compile Include="Migrations\201807010921350_addpacinet.Designer.cs">
       <DependentUpon>201807010921350_addpacinet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807061103478_addRater.cs" />
+    <Compile Include="Migrations\201807061103478_addRater.Designer.cs">
+      <DependentUpon>201807061103478_addRater.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807062317582_edit_notification.cs" />
+    <Compile Include="Migrations\201807062317582_edit_notification.Designer.cs">
+      <DependentUpon>201807062317582_edit_notification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807071714317_AddNotifictionSeen.cs" />
+    <Compile Include="Migrations\201807071714317_AddNotifictionSeen.Designer.cs">
+      <DependentUpon>201807071714317_AddNotifictionSeen.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -331,6 +344,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Notification\" />
+    <Folder Include="Views\Rating\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201806262023467_frist.resx">
@@ -353,6 +368,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807010921350_addpacinet.resx">
       <DependentUpon>201807010921350_addpacinet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807061103478_addRater.resx">
+      <DependentUpon>201807061103478_addRater.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807062317582_edit_notification.resx">
+      <DependentUpon>201807062317582_edit_notification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807071714317_AddNotifictionSeen.resx">
+      <DependentUpon>201807071714317_AddNotifictionSeen.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

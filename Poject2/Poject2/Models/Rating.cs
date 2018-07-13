@@ -12,5 +12,7 @@ namespace Poject2.Models
         [StringLength(20)]
         public string Content { set; get; }
         public int PersonId { get; set; }
+        //
+        public int RaterId { get; set; }
     }
 }

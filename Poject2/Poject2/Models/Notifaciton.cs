@@ -12,6 +12,9 @@ namespace Poject2.Models
         [StringLength(20)]
         public string Content { set; get; }
         public int id_sender { set; get; }
+        public int id_resiever { set; get; }
+
+        public bool seen { set; get; }
         //type
         public int idObject { get; set; }
         /* for type
